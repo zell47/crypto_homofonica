@@ -15,8 +15,9 @@ void main(){
 	int a=0,b=0,c=0,d=0,e=0,f=0,g=0,h=0,i=0,j=0,k=0,l=0,m=0,n=0,o=0,p=0,q=0,r=0,s=0,t=0,u=0,v=0,w=0,x=0,y=0,z=0,esp=0;
 	int pos=0,valor=0,op=0,pos2=0;
 	char string[MAX],string2[MAX]={'\0'},sup[MAX];
-	char letra,c;
-	int z1=0,z2=0,z3=0,dim=0,ancho=0;
+	char letra,carac;
+	char *z4;
+	int z1=0,z2=0,z3=0,z5=0,dim=0,ancho=0;
 	printf("Que deseas hacer?");
 	printf("\n1.Encriptar");
 	printf("\n2.Desencriptar");
@@ -746,45 +747,63 @@ void main(){
 	if (op == 2){
 		printf("Numeros a desencriptar (separados por comas) :");
 		gets(string);
-		dim=strlen(string);
+		dim=strlen(string)+1;
 		while (z1!=dim){
 					letra =',';
-					c = string[z1];
-					if (letra == c){
-						if (z1 >= 2){
+					carac = string[z5];
+					if (letra == carac || carac == '\0'){
+						if (z5 >= 2){
 							sup[0] = '\0';
 							sup[0] = string[0];
 							sup[1] = string[1];
 							sup[2] = '\0';
-
 							valor = atoi(sup);
-							for (z2=0,z3=0; z2!=27; z2++, z3++){
-								if(valor == trad[z2][z3]){
-									printf("%c",z2+'a');
+							while (z2!=27){
+								z3=0;
+								while (z3!=3){
+									if (valor == 79 || valor == 80 || valor == 81){
+										printf("%c",32);
+										z2=26;
+										z3=2;
+									}
+									else if(valor == trad[z2][z3]){
+										printf("%c",z2+'a');
+									}
+									z3++;
 								}
-								if (z3 == 3){
-									z3=0;
-								}
+								z2++;
 							}
 						}
-						if (z1 <=1){
+						else if (z5 <=1){
 							sup[0] = '\0';
 							sup[0] = string[0];
 							sup[1] = '\0';
 							valor = atoi(sup);
-							for (z2=0,z3=0; z2!=27; z2++, z3++){
-								if(valor == trad[z2][z3]){
-									printf("%c",z2+'a');
+							while (z2!=27){
+								z3=0;
+								while (z3!=3){
+									if (valor == 79 || valor == 80 || valor == 81){
+										printf("%c",32);
+										z2=26;
+										z3=2;
+									}
+									else if(valor == trad[z2][z3]){
+										printf("%c",z2+'a');
+									}
+									z3++;
 								}
-								if (z3 == 3){
-									z3=0;
-								}
+								z2++;
 							}
 						}
+						if (carac == '\0') exit(0);
+						z4=strstr(string,",")+1;
+						strcpy(string,z4);
+						z2=0;
+						z5=-1;
 					}
+					z5++;
 					z1++;
 				}
 	}
-
 }
 
